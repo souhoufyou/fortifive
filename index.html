@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit de Sécurité Informatique</title>
+    <link rel="stylesheet" href="style.css?version=1">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+</head>
+<body>
+
+<!-- En-tête avec logo -->
+<header class="header">
+    <div class="container">
+        <a href="index.html">
+            <img src="logo.png" alt="Fortifive Logo" class="logo">
+        </a>
+        <h1 class="title">Audit de Sécurité Informatique</h1>
+    </div>
+</header>
+
+<!-- Barre de progression -->
+<div class="progress-bar">
+    <div class="progress" id="progress" style="width: 0%; height: 5px; background-color: #FF3B3B;"></div>
+</div>
+
+<div class="container">
+    <!-- Page 1 : Informations Générales -->
+    <div class="page active" id="page1">
+        <h2>1. Informations Générales</h2>
+
+        <div class="question">
+            <label for="num_pc">Combien de PC sont connectés à votre réseau ?</label>
+            <input type="number" id="num_pc" min="0" placeholder="Nombre de PC">
+        </div>
+
+        <div class="question">
+            <label for="num_phones">Combien de téléphones sont connectés à votre réseau ?</label>
+            <input type="number" id="num_phones" min="0" placeholder="Nombre de téléphones">
+        </div>
+
+        <div class="question">
+            <label for="num_tablets">Combien de tablettes sont connectées à votre réseau ?</label>
+            <input type="number" id="num_tablets" min="0" placeholder="Nombre de tablettes">
+        </div>
+
+        <div class="question">
+            <label for="shared_devices">Ces appareils sont-ils partagés entre plusieurs utilisateurs ?</label>
+            <select id="shared_devices">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="secure_devices">Les appareils sont-ils sécurisés avec des mesures comme des mots de passe forts ?</label>
+            <select id="secure_devices">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="alarm_system">Avez-vous un système d'alarme pour protéger vos locaux ?</label>
+            <select id="alarm_system">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="connected_devices">Avez-vous des objets connectés (IoT) sur votre réseau ?</label>
+            <select id="connected_devices">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <button class="btn-custom" onclick="nextPage(2)">Suivant</button>
+    </div>
+
+    <!-- Page 2 : Sécurité des Applications -->
+    <div class="page" id="page2">
+        <h2>2. Sécurité des Applications</h2>
+
+        <div class="question">
+            <label for="antivirus">Disposez-vous d'un antivirus sur tous vos appareils ?</label>
+            <select id="antivirus">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="firewall">Disposez-vous d'un pare-feu professionnel ?</label>
+            <select id="firewall">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="data_encryption">Les données sensibles sont-elles cryptées ?</label>
+            <select id="data_encryption">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="backup">Faites-vous des sauvegardes régulières de vos données ?</label>
+            <select id="backup">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="antispam">Disposez-vous d'un logiciel anti-spam ?</label>
+            <select id="antispam">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="admin_rights">Les utilisateurs ont-ils des droits administratifs sur leurs machines ?</label>
+            <select id="admin_rights">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <button class="btn-custom" onclick="nextPage(3)">Suivant</button>
+    </div>
+
+    <!-- Page 3 : Sécurité des Réseaux -->
+    <div class="page" id="page3">
+        <h2>3. Sécurité des Réseaux</h2>
+
+        <div class="question">
+            <label for="wifi">Votre Wifi est-il protégé par un mot de passe fort ?</label>
+            <select id="wifi">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="vpn">Utilisez-vous un VPN pour les connexions distantes ?</label>
+            <select id="vpn">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="network_monitoring">Votre réseau est-il surveillé pour détecter des activités suspectes ?</label>
+            <select id="network_monitoring">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="remote_access">Utilisez-vous des services de télétravail sécurisés ?</label>
+            <select id="remote_access">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="cloud_storage">Stockez-vous vos données sensibles dans le Cloud ?</label>
+            <select id="cloud_storage">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="network_segmentation">Votre réseau est-il segmenté pour limiter les risques ?</label>
+            <select id="network_segmentation">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <button class="btn-custom" onclick="nextPage(4)">Suivant</button>
+    </div>
+
+    <!-- Page 4 : Facteurs Humains -->
+    <div class="page" id="page4">
+        <h2>4. Facteurs Humains</h2>
+
+        <div class="question">
+            <label for="security_training">Avez-vous formé vos employés aux bonnes pratiques de sécurité ?</label>
+            <select id="security_training">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="phishing_awareness">Vos employés savent-ils détecter des emails de phishing ?</label>
+            <select id="phishing_awareness">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="password_policy">Utilisez-vous une politique de mots de passe stricts ?</label>
+            <select id="password_policy">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label for="multi_factor_auth">Utilisez-vous l'authentification multi-facteurs ?</label>
+            <select id="multi_factor_auth">
+                <option value="oui">Oui</option>
+                <option value="non">Non</option>
+            </select>
+        </div>
+
+        <button class="btn-custom" onclick="finishAudit()">Terminer</button>
+    </div>
+
+    <!-- Page des résultats -->
+    <div class="page" id="result-page">
+        <div id="results">
+            <!-- Section pour l'analyse de l'IA -->
+            <div class="result-section">
+                <h3>Analyse de l'audit</h3>
+                <p id="ai-analysis">
+                    <!-- Le texte généré par l'IA apparaîtra ici -->
+                </p>
+            </div>
+
+            <!-- Section pour le résumé général -->
+            <div class="result-section">
+            
+                <p id="general-summary">
+                    <!-- Le résumé général et la note apparaîtront ici -->
+                </p>
+            </div>
+
+            
+
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,278 @@
+/* Styles de base */
+body {
+    background-color: #1a1a1a;
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Conteneur principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header */
+.header {
+    background-color: #1a1a1a;
+    padding: 20px 0;
+    text-align: center;
+    border-bottom: 2px solid #FF3B3B;
+}
+
+.logo {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 36px;
+    color: #FF3B3B;
+    margin: 0;
+    letter-spacing: 1.5px;
+}
+
+/* Style des pages */
+.page {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.page.active {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
+}
+
+/* Style des cartes */
+.card {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+/* Style des éléments de formulaire */
+.question {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.question label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.question select,
+.question input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    appearance: none;
+    transition: border 0.3s ease, background-color 0.3s ease;
+}
+
+.question select:focus,
+.question input:focus {
+    outline: none;
+    border: 2px solid #FF3B3B;
+    background-color: #444;
+}
+
+/* Style pour les boutons */
+.btn-custom,
+.btn-finish {
+    background: linear-gradient(135deg, #FF3B3B, #e62e2e);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-custom:hover,
+.btn-finish:hover {
+    background: linear-gradient(135deg, #FF5C5C, #FF1F1F);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.btn-custom:active,
+.btn-finish:active {
+    transform: translateY(1px);
+}
+
+/* Effet de lumière animée sur les boutons */
+.btn-custom::before,
+.btn-finish::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.btn-custom:hover::before,
+.btn-finish:hover::before {
+    top: 0;
+    left: 100%;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+/* Correction pour la dernière page */
+
+/* Conteneur des résultats avec disposition en une colonne */
+#results {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    text-align: left;
+}
+
+/* Design des sections d'analyse */
+.result-section {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.result-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.result-section h3 {
+    font-size: 1.5em; /* Taille réduite */
+    color: #FF3B3B;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.result-section p {
+    font-size: 1.1em; /* Taille de police réduite */
+    line-height: 1.6; /* Augmentation de l'interligne pour plus de lisibilité */
+    color: #f1f1f1;
+}
+
+/* Barres de progression des risques */
+.risk-bar {
+    background-color: #444;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 10px;
+    height: 10px;
+    width: 100%;
+}
+
+.risk-bar-inner {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.risk-bar-inner.good {
+    width: 75%;
+    background-color: #28a745;
+}
+
+.risk-bar-inner.bad {
+    width: 40%;
+    background-color: #dc3545;
+}
+
+/* Résumé final */
+.final-summary {
+    background-color: #333;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.final-summary h3 {
+    font-size: 1.8em; /* Taille réduite */
+    color: #FF3B3B;
+    margin-bottom: 20px;
+}
+
+.final-summary p {
+    font-size: 1.2em; /* Taille réduite */
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* Icônes modernisées */
+.result-section h3 i {
+    font-size: 1.3em; /* Taille réduite */
+    margin-right: 10px;
+    color: #FF3B3B;
+}
+
+/* Bouton Terminer stylisé */
+.btn-finish {
+    display: inline-block;
+    background-color: #FF3B3B;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-finish:hover {
+    background-color: #ff1f1f;
+}
+
+/* Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+    #results {
+        padding: 10px;
+    }
+
+    .result-section {
+        width: 100%;
+    }
+}
